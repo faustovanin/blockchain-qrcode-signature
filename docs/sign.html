@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NFe Asssinatura</title>
+    <script type="text/javascript" src="js/qr_packed.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <link rel='stylesheet' href="css/style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+#reader {
+  width: 300px;
+  height: 300px;
+  background-color: white;
+
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+    
+  margin: auto;
+
+  text-align: center;
+  line-height: 100px;
+
+  overflow: hidden;
+}
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+button {
+  background-color: #62C232;
+  color: white;
+  border: 0;
+  border-radius: 0.25rem;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  margin: 0.25rem;
+  cursor: pointer;
+}
+#qrcode {
+  /*visibility: hidden;*/
+  display: none;
+}
+#reader p {
+  width: 100%;
+  word-wrap: break-word;
+  line-height: 1em;
+  text-align: left;
+  font-size: 16pt;
+}
+    </style>
+  </head>
+  <body>
+    <div id='header'>
+      <h1>NFe - Assinatura Digital</h1>
+    </div>
+    <div id="reader">
+      <button id="post">Assinar NFe</button>
+      <input class="inputfile" type=file
+         accept="image/*"
+         capture=environment
+         onchange="openQRCamera(this);"
+         tabindex=-1
+         name="qrcode"
+      />
+      <img src="img/checkmark.gif" id="qrcode"/>
+      <p class='transactionHash'></p>
+    </div>
+    <script>
+      $(document).ready(function() {
+        $('#post').click( function() {
+          $('.transactionHash').hide();
+          $('.inputfile').click();
+        })
+      });
+      function openQRCamera(node) {
+        var reader = new FileReader();
+        reader.onload = function() {
+          node.value = "";
+          qrcode.callback = function(res) {
+            if(res instanceof Error) {
+              alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+            } else {
+              // node.parentNode.previousElementSibling.value = res;
+              let post = new XMLHttpRequest();
+              post.open('POST', 'http://192.168.100.14:5000/sign', true);
+              post.onreadystatechange = function() {
+                if(post.readyState > 3 && post.status == 201) {
+                  obj = JSON.parse(post.responseText);
+
+                  $('#qrcode').show().delay(2000).fadeOut();
+                  $('.transactionHash').hide().delay(3000).queue(function() {
+                    $(this).html('<strong>Recibo da transação: </strong>' + obj.transactionHash);
+                    // n();
+                  }).show().fadeIn();
+                }
+              }
+
+              post.setRequestHeader('X-Requqested-With', 'XMLHttpRequest');
+              post.setRequestHeader('Content-Type', 'application/json');
+
+              const req = {
+                data: res
+              };
+
+              post.send(JSON.stringify(req));
+              // alert('Postei');
+            }
+          };
+          qrcode.decode(reader.result);
+        };
+        reader.readAsDataURL(node.files[0]);
+      }
+    </script>
+  </body>
+</html>
