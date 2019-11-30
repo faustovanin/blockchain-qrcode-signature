@@ -24,8 +24,10 @@ const getBlocks = function() {
     console.log(event);
     if(event.topic == 'NFeSigned') {
       $('#result').html('NFe Assinada');
-      $('#qrcode').attr('src', 'img/checkmark.gif');
-      $('#qrcode').show().delay(2000).fadeOut();
+      // $('#qrcode').attr('src', 'img/checkmark.gif');
+      // $('#checkmark').css('visibility', 'visible');
+      // $('#checkmark').show().delay(2000).fadeOut();
+      $('#signers ul').append('<li>'+event.signature+'</li>');
     }
   };
 

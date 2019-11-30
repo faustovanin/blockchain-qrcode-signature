@@ -10,7 +10,7 @@
     <style>
 #reader {
   width: 300px;
-  height: 300px;
+  height: 400px;
   background-color: white;
 
   position: absolute;
@@ -65,7 +65,9 @@ button {
     <div id='header'>
       <h1>NFe - Assinatura Digital</h1>
     </div>
+
     <div id="reader">
+      <input type="text" name="name" id="signer" placeholder="Seu Nome"/><br/>
       <button id="post">Assinar NFe</button>
       <input class="inputfile" type=file
          accept="image/*"
@@ -74,6 +76,7 @@ button {
          tabindex=-1
          name="qrcode"
       />
+
       <img src="img/checkmark.gif" id="qrcode"/>
       <p class='transactionHash'></p>
     </div>
@@ -111,7 +114,8 @@ button {
               post.setRequestHeader('Content-Type', 'application/json');
 
               const req = {
-                data: res
+                data: res,
+                signer: $('#signer').val()
               };
 
               post.send(JSON.stringify(req));

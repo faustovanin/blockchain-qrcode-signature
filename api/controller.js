@@ -110,7 +110,7 @@ exports.createAccount = async (req, res) => {
 
 exports.sign = async(req, res) => {
 	if(!req.body.data) return res.status(401).json({error: 'Data not provided'});
-	let dataHash = web3.utils.sha3(req.body.data);
+	let dataHash = web3.utils.sha3(req.body.data+req.body.signer);
 	let signedObj = await web3.eth.accounts.sign(dataHash, privateKey);
 	contract.methods.sign(account, dataHash, signedObj.signature).send()
 		.on('receipt', receipt => {

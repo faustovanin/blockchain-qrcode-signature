@@ -99,9 +99,12 @@ body {
 }
 
 #status {
+  position: fixed;
+  top: 10;
+  right: 0;
   font-size: 8pt;
   color: gray;
-  float: right;
+  /*float: right;*/
   padding-right: 10px;
 }
 
@@ -158,4 +161,20 @@ body {
 #qrcode {
   width: 300px;
   /*height: 300px;*/
+}
+
+#checkmark {
+  visibility: hidden;
+}
+
+#signers {
+  position: fixed;
+  right: 0;
+  top: 50px;
+  height: 100%;
+  font-size: 14pt;
+  width: 350px;
+  background-color: white;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
 }
