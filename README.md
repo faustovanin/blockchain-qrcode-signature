@@ -2,7 +2,8 @@
 A POC for cryptographic signature using Node.JS Express API, Web3 and QR Code Scanner.
 
 
-It is composed by { 
+It is composed by {
+ 
 	an HTML page A has its QR Code read by another {
 
 		HTML page B that do a POST to an {
@@ -18,7 +19,7 @@ It is composed by {
 			}
 
 		}
-		
+
 	}
 
 # Instalation
