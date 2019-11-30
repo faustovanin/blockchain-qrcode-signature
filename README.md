@@ -35,4 +35,4 @@ You'll need to setup manually your directory into ``docs/sign.html`` to point to
 
 # Usage
 
-Go to <hostname>:5000 in your local browser and access <hostname>:5000/sign.html from your smartphone (both on the same network, obviously).
+Go to ``hostname:5000`` in your local browser and access ``hostname:5000/sign.html`` on your smartphone (both on the same network, obviously).
