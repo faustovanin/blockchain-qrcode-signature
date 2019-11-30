@@ -3,10 +3,10 @@ A POC for cryptographic signature using Node.JS Express API, Web3 and QR Code Sc
 
 
 It is composed by {
- 
+
 	an HTML page A has its QR Code read by another {
 
-		HTML page B that do a POST to an {
+		HTML page B that reads the QR Code and do a POST to an {
 
 			API endpoint that sends a transaction to a {
 
