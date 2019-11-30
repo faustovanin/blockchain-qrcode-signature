@@ -4,16 +4,24 @@ A POC for cryptographic signature using Node.JS Express API, Web3 and QR Code Sc
 
 It is composed by { 
 	an HTML page A has its QR Code read by another {
+
 		HTML page B that do a POST to an {
+
 			API endpoint that sends a transaction to a {
+
 				Smart Contract that generates an event, monitored by a {
+
 					Websocket API that notifies HTML page A
+
 				}
+
 			}
+
 		}
+		
 	}
 
-#Instalation
+# Instalation
 
 ``npm i``
 
@@ -24,6 +32,6 @@ In a different terminal run:
 
 You'll need to setup manually your directory into ``docs/sign.html`` to point to your local IP addres.
 
-#Usage
+# Usage
 
 Go to <hostname>:5000 in your local browser and access <hostname>:5000/sign.html from your smartphone (both on the same network, obviously).
