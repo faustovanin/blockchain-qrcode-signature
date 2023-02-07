@@ -8,11 +8,11 @@
     "start": "node index.js"
   },
   "devDependencies": {
-    "web3": "^1.0.0-beta.35"
+    "web3": "^1.8.2"
   },
   "dependencies": {
     "express": "^4.17.3",
-    "web3": "^1.0.0-beta.53",
+    "web3": "^1.8.2",
     "ws": "^7.1.2"
   },
   "author": "Fausto Vanin",
