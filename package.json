@@ -16,7 +16,7 @@
     "web3": "^1.0.0-beta.35"
   },
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "web3": "^1.0.0-beta.53"
   }
 }
