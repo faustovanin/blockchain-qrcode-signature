@@ -13,7 +13,7 @@
   "dependencies": {
     "express": "^4.17.3",
     "web3": "^1.0.0-beta.53",
-    "ws": "^7.1.2"
+    "ws": "^7.4.6"
   },
   "author": "Fausto Vanin",
   "license": "MIT"
